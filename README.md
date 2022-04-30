@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+#### react08_app_route_dev项目
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1）将路由信息（路由路径，路由组件）提炼到一个js模块中，再将其暴露出去，在需要的js模块中引入
 
-## Available Scripts
+2）路由链接 `<NavLink to="xx"></ NavLink>`
 
-In the project directory, you can run:
+3）路由组件 `<Switch> <Route path="xx" component={ Xxx } /> </Switch>`
 
-### `npm start`
+4）根组件包裹 `<BrowserRouter> <App /> </BrowserRouter>`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+5）路由传参：
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+​	》**（1）params传参**
 
-### `npm test`
+​		》`<NavLink to="/home/message/1">xx</ NavLink> `
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+​		》`<Route path="/home/message/:id" />`
 
-### `npm run build`
+​		》`this.history.match.params`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+​	》**（2）state传参**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+​		》`<NavLink to={{ pathname:'/home/message/info',state:item }}>xx</NavLink>`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+​		》`<Route path="/home/message/info" component={Info} />`
 
-### `npm run eject`
+​		》`this.history.location.state`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+​	》**（3）search传参** 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+​		》`<NavLink to={{ `/home/message/info?name=${item.name}`  }}xx</NavLink>`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+​		》`<Route path="/home/message/info" component={Info} />`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+​		》`this.history.location.search`
 
-## Learn More
+​	》**（4）编程式导航（传参）**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+​		》`this.props.history.push(url,state={})`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+​		》`this.props.history.goBack()`
 
-### Code Splitting
+​		》`this.props.history.goForward()`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+​		》`this.props.history.go(n)`
